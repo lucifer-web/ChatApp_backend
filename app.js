@@ -14,7 +14,11 @@ app.use(express.urlencoded({extended:false}))
 app.use(cors());
 app.use(morgan('dev'))
 
-
+app.get("/",(req,res)=>{
+    res.json({
+        msg:"app is working"
+    })
+})
 
 // routes
 app.use('/chat-app-service/v1',MainRoute)
