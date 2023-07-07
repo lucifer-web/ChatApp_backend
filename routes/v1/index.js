@@ -2,7 +2,7 @@ const express = require("express")
 const router= express.Router()
 const authRoute= require('./auth.route');
 const contactRoute = require('./contact.route');
-const docRoute = require("./docs.route")
+// const docRoute = require("./docs.route")
 
 const route_array = [
     {
@@ -13,10 +13,10 @@ const route_array = [
         path:"/contact",
         route:contactRoute
     },
-    {
-        path:"/docs",
-        route:docRoute
-    }
+    // {
+    //     path:"/docs",
+    //     route:docRoute
+    // }
 ]
 
 

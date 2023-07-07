@@ -126,7 +126,7 @@ class AuthService {
     try {
         const {email,password} = body;
         // make a check when admin approve and send the mail of user id and password
-        const user =await userModel.findOne({email,isEmailVerified:true,isDocumentUpload:true});
+        const user =await userModel.findOne({email});
         if(!user)
         {
       throw new ApiError(httpStatus.NOT_FOUND, "No User Found");
@@ -152,7 +152,7 @@ class AuthService {
   static profileService = async(userId)=>{
     try {
        
-      const user =await userModel.findById(userId).select("name email role mobile");
+      const user =await userModel.findById(userId).select("-password");
       if(!user)
       {
           throw new ApiError(httpStatus.NOT_FOUND,"User Not Found");
@@ -191,6 +191,29 @@ class AuthService {
       throw new ApiError(httpStatus.BAD_REQUEST, error.message);
     }
   }
+
+  static registerUser = async(body)=>{
+
+    const users = await userModel.findOne({email:body?.email});
+
+      if(users)
+      {
+        throw new ApiError(httpStatus.BAD_REQUEST,"User already Exist");
+      }
+
+   const user = await userModel.create({
+    name:body?.name,
+    email:body?.email,
+    password:body?.password
+  });
+
+
+    return {
+      msg:"user register successfully"
+    }
+
+  }
+
 }
 
 module.exports = AuthService;

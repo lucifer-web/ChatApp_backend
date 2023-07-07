@@ -7,22 +7,7 @@ const multer = require('../../utils/multer');
 const { verifyJwt } = require('../../middleware/token');
 
 
-router
-.route('/check-email')
-.post(validate(AuthValidation.emailSchema),AuthController.checkEmailExistance)
-
-
-
-router
-.route('/verify-email-otp')
-.post(validate(AuthValidation.topVerifySchema),AuthController.VerifiedEmailWithOtp)
-
-
-
-router
-.route('/upload-document')
-.post(multer.single("resume"),validate(AuthValidation.uploadDocumentSchema),AuthController.uploadDocument)
-
+router.route("/register").post(validate(AuthValidation.registerUser),AuthController.registerUser);
 
 router
 .route('/login')
@@ -33,9 +18,36 @@ router
 .get(verifyJwt,AuthController.ProfileController)
 
 
-router
-.route('/forget-password')
-.get(validate(AuthValidation.emailSchema),AuthController.ForgetPassword)
+
+// router
+// .route('/check-email')
+// .post(validate(AuthValidation.emailSchema),AuthController.checkEmailExistance)
+
+
+
+// router
+// .route('/verify-email-otp')
+// .post(validate(AuthValidation.topVerifySchema),AuthController.VerifiedEmailWithOtp)
+
+
+
+// router
+// .route('/upload-document')
+// .post(multer.single("resume"),validate(AuthValidation.uploadDocumentSchema),AuthController.uploadDocument)
+
+
+// router
+// .route('/login')
+// .post(validate(AuthValidation.loginSchema),AuthController.loginController)
+
+// router
+// .route('/profile')
+// .get(verifyJwt,AuthController.ProfileController)
+
+
+// router
+// .route('/forget-password')
+// .get(validate(AuthValidation.emailSchema),AuthController.ForgetPassword)
 
 
 

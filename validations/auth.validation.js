@@ -27,6 +27,15 @@ class AuthValidation {
     }),
   };
 
+
+    static registerUser = {
+      body: joi.object().keys({
+        name: joi.string().required("name is requried"),
+        email: joi.string().email().required("email i srequired"),
+        password: joi.string().required("Password is requried"),
+      })
+    }
+
 }
 
 module.exports = {

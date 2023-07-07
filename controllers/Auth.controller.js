@@ -1,6 +1,12 @@
 const httpStatus = require("http-status");
 const {  AuthService } = require("../services")
 const catchAsync = require("../utils/catchAsync");
+
+const registerUser = catchAsync(async (req,res)=>{
+    const res_obj = await AuthService.registerUser(req.body);
+    res.status(httpStatus.CREATED).send(res_obj);
+})
+
 const checkEmailExistance = catchAsync(async(req,res)=>{
     const res_obj = await AuthService.checkEmailExistanceService(req.body);
     res.status(httpStatus.CREATED).send(res_obj);
@@ -27,11 +33,14 @@ const ForgetPassword = catchAsync(async(req,res)=>{
     const res_obj = await AuthService.ForgetPasswordService(req?.body);
     res.status(httpStatus.OK).send(res_obj);
 })
+
+
 module.exports={
     checkEmailExistance,
     VerifiedEmailWithOtp,
     uploadDocument,
     loginController,
     ProfileController,
-    ForgetPassword
+    ForgetPassword,
+    registerUser
 }

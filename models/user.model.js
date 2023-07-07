@@ -7,47 +7,17 @@ const schema = new mongoose.Schema(
       default: "user",
       trim: true,
     },
-    role: {
-      type: String,
-      default: "user",
-    },
     email: {
       type: String,
       required: true,
       unique: true,
       trim: true,
-    }, mobile: {
-      type: String,
-      default:''
     },
     password: {
       type: String,
       default: "",
       trim: true,
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
-    isDocumentUpload: {
-      type: Boolean,
-      default: false,
-    },
-    isAdminApproved: {
-      type: Boolean,
-      default: false,
-    },
-    resume: {
-      type: {
-        cloudnary_id: String,
-        url: String,
-      },
-      default: null,
-    },
-    otp: {
-      type: String,
-      default: "",
-    },
+    }
   },
   {
     timestamps: true,
